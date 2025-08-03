@@ -18,7 +18,7 @@ def load_model(name):
     return YOLO(path_map[name])
 
 st.set_page_config(page_title="Detección de Malaria con YOLO", layout="centered")
-st.title("🧫 Detección de Células de Malaria (Tropozoites, Rings...)")
+st.title("🧫 Detección de Células de Malaria")
 
 col1, col2 = st.columns([1, 1])
 with col1:
@@ -32,7 +32,7 @@ if uploaded:
     img = cv2.imdecode(np_img, cv2.IMREAD_COLOR)
     model = load_model(modelo_sel)
 
-    conf = st.slider("Umbral de confianza", 0.0, 1.0, 0.25)
+    conf = st.slider("Seleccionar umbral de confianza", 0.0, 1.0, 0.25)
 
     with st.spinner("🔍 Procesando imagen..."):
         results = model.predict(img, conf=conf)[0]
